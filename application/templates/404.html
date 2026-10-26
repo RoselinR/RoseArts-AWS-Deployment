@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Page not found — RoseArts{% endblock %}
+{% block content %}
+<section class="not-found section-shell">
+  <p class="eyebrow">A LITTLE DETOUR</p>
+  <h1>We couldn't find that page<span class="period">.</span></h1>
+  <p>The artwork or page may have moved.</p>
+  <a class="button button-dark" href="{{ url_for('home') }}">Back to home</a>
+</section>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}All Paintings — RoseArts{% endblock %}
+{% block content %}
+<section class="page-intro section-shell">
+  <p class="eyebrow">THE COLLECTION</p>
+  <h1>All paintings<span class="period">.</span></h1>
+  <p>Original pieces made by hand, each with its own little story.</p>
+</section>
+<section class="section-shell gallery-section">
+  <p class="result-count">{{ artworks|length }} pieces in the collection</p>
+  <div class="gallery-grid">
+    {% for artwork in artworks %}
+    <a class="art-card" href="{{ url_for('artwork_detail', artwork_id=artwork.id) }}">
+      <div class="art-card-image">
+        <img src="{{ url_for('static', filename='images/' ~ artwork.image) }}" alt="{{ artwork.title }} — sample artwork placeholder" loading="lazy">
+        <span class="view-label">View artwork ↗</span>
+      </div>
+      <div class="art-card-meta"><h3>{{ artwork.title }}</h3><p>{{ artwork.medium }}{% if artwork.size %} · {{ artwork.size }}{% endif %}</p></div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

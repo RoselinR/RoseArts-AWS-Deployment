@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Discover handmade original paintings at RoseArts.">
+  <title>{% block title %}RoseArts — Art made by hand{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('home') }}" aria-label="RoseArts home">
+      <span class="brand-mark">RA</span>
+      <span class="brand-name">RoseArts</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+      <a href="{{ url_for('artwork_gallery') }}" class="{% if request.endpoint in ['artwork_gallery', 'artwork_detail'] %}active{% endif %}">All Paintings</a>
+      <a href="{{ url_for('enquiry') }}" class="{% if request.endpoint == 'enquiry' %}active{% endif %}">Enquiry</a>
+    </nav>
+  </header>
+
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-wrap" aria-live="polite">
+          {% for category, message in messages %}
+            <p class="flash {{ category }}">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="{{ url_for('home') }}">RA <span>RoseArts</span></a>
+    <p>Original art, made slowly and thoughtfully by hand.</p>
+    <div class="footer-links">
+      <a href="{{ url_for('artwork_gallery') }}">Explore paintings</a>
+      <a href="{{ url_for('enquiry') }}">Make an enquiry</a>
+      <a href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    </div>
+    <small>© <span id="year"></span> RoseArts. All artwork belongs to its respective creator.</small>
+  </footer>
+</body>
+</html>

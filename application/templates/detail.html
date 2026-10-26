@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ artwork.title }} — RoseArts{% endblock %}
+{% block content %}
+<section class="detail-layout section-shell">
+  <div class="detail-image">
+    <img src="{{ url_for('static', filename='images/' ~ artwork.image) }}" alt="{{ artwork.title }} — sample artwork placeholder">
+    <p class="image-caption">Each piece is unique. Colours may vary slightly from screen to screen.</p>
+  </div>
+  <div class="detail-copy">
+    <a class="back-link" href="{{ url_for('artwork_gallery') }}">← Back to all paintings</a>
+    <p class="eyebrow">ORIGINAL ARTWORK</p>
+    <h1>{{ artwork.title }}<span class="period">.</span></h1>
+    <p class="detail-description">{{ artwork.description }}</p>
+    <div class="detail-specs">
+      <div><span>Medium</span><strong>{{ artwork.medium }}</strong></div>
+      <div><span>Size</span><strong>{{ artwork.size }}</strong></div>
+      {% if artwork.price %}<div><span>Price</span><strong>{{ artwork.price }}</strong></div>{% endif %}
+    </div>
+    <p class="detail-note">Interested in this piece? Send an enquiry for availability, pricing, or more details.</p>
+    <a class="button button-dark full-button" href="{{ url_for('enquiry', artwork=artwork.id) }}">Enquire about this painting ↗</a>
+  </div>
+</section>
+{% endblock %}

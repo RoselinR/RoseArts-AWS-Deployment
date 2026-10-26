@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Order Enquiry — RoseArts{% endblock %}
+{% block content %}
+<section class="enquiry-layout section-shell">
+  <div class="enquiry-copy">
+    <p class="eyebrow">LET'S TALK ART</p>
+    <h1>Have a piece<br><em>in mind?</em></h1>
+    <p>Ask about availability, pricing, custom artwork, or anything else. Fill in the form and your enquiry will be saved for the artist to review.</p>
+    <div class="contact-note"><span class="note-symbol">RA</span><div><strong>Made with care, always.</strong><p>Every message is welcome.</p></div></div>
+    <a class="text-link" href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer">Or connect on Instagram ↗</a>
+  </div>
+  <form class="enquiry-form" method="post" action="{{ url_for('enquiry') }}">
+    <label for="name">Your name <span>*</span></label>
+    <input id="name" name="name" type="text" autocomplete="name" required maxlength="100" value="{{ form_data.get('name', '') }}">
+    <label for="email">Email address <span>*</span></label>
+    <input id="email" name="email" type="email" autocomplete="email" required maxlength="254" value="{{ form_data.get('email', '') }}">
+    <label for="artwork_id">Which painting are you interested in?</label>
+    <select id="artwork_id" name="artwork_id">
+      <option value="">I'm enquiring generally</option>
+      {% for artwork in artworks %}
+      <option value="{{ artwork.id }}" {% if selected_artwork == artwork.id %}selected{% endif %}>{{ artwork.title }}</option>
+      {% endfor %}
+    </select>
+    <label for="message">Your message <span>*</span></label>
+    <textarea id="message" name="message" rows="5" required maxlength="3000" placeholder="Tell me what you have in mind...">{{ form_data.get('message', '') }}</textarea>
+    <p class="form-privacy">Your details are used to respond to this enquiry.</p>
+    <button class="button button-dark full-button" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+  </form>
+</section>
+{% endblock %}

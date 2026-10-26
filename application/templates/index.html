@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Home - RoseArts {% endblock %}
+{% block content %}
+<section class="hero section-shell">
+  <div class="hero-copy">
+    <p class="eyebrow">ORIGINAL ART · MADE BY HAND</p>
+    <h1>Art that makes<br><em>a space feel yours.</em></h1>
+    <p class="hero-intro">Thoughtfully handmade paintings, created to bring a little colour, character, and feeling into everyday spaces.</p>
+    <a class="button button-dark" href="{{ url_for('artwork_gallery') }}">Explore the collection <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="hero-art">
+    <img
+        src="{{ url_for('static', filename='images/hero.jpeg') }}"
+        alt="A collage showcasing original paintings from the RoseArts collection">
+    <span class="image-note">A little art, a lot of feeling.</span>
+  </div>
+</section>
+
+<section class="intro-strip">
+  <p>ONE-OF-A-KIND PIECES</p><span aria-hidden="true">✳</span><p>MADE WITH CARE</p><span aria-hidden="true">✳</span><p>CREATED BY HAND</p>
+</section>
+
+<section class="section-shell featured-section">
+  <div class="section-heading">
+    <div><p class="eyebrow">A FEW FAVOURITES</p><h2>Made to be lived with.</h2></div>
+    <a class="text-link" href="{{ url_for('artwork_gallery') }}">View all paintings <span>↗</span></a>
+  </div>
+  <div class="stagger-grid">
+    {% for artwork in featured %}
+   
+  <a class="art-card" href="{{ url_for('artwork_detail', artwork_id=artwork.id) }}">
+   <div class="art-card-image">
+    <img
+      src="{{ url_for('static', filename='images/' ~ artwork.image) }}"
+      alt="{{ artwork.title }}"
+      loading="lazy"
+    >
+    <span class="view-label">View artwork ↗</span>
+  </div>
+
+  <div class="art-card-meta">
+    <h3>{{ artwork.title }}</h3>
+    <p>{{ artwork.medium }}{% if artwork.size %} · {{ artwork.size }}{% endif %}</p>
+  </div>
+</a>
+
+    {% endfor %}
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="about-inner">
+    <p class="eyebrow">A NOTE FROM THE ARTIST</p>
+    <h2>Little details.<br><em>Made by hand.</em></h2>
+    <p>RoseArts is a small creative space for original paintings and handmade pieces. Each artwork begins with an idea and grows through colour, patience, and the joy of making something by hand. I hope you find a piece that feels at home with you.</p>
+    <a class="text-link" href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer">Follow the creative process on Instagram ↗</a>
+  </div>
+</section>
+
+<section class="closing-cta section-shell">
+  <p class="eyebrow">FOUND SOMETHING YOU LOVE?</p>
+  <h2>Let’s find its next home.</h2>
+  <a class="button button-outline" href="{{ url_for('enquiry') }}">Make an enquiry ↗</a>
+</section>
+{% endblock %}
