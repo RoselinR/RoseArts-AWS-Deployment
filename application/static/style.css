@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+:root {
+  --ink: #191919;
+  --muted: #77736f;
+  --line: #e9e7e4;
+  --paper: #fff;
+  --soft: #f8f7f5;
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+  --shadow: 0 5px 22px rgba(0,0,0,.075);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button, input, textarea, select { font: inherit; }
+.site-header { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: 15px max(5vw, calc((100vw - 1240px)/2)); background: rgba(255,255,255,.96); box-shadow: var(--shadow); backdrop-filter: blur(12px); }
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+.brand-mark { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--ink); border-radius: 50%; font-family: var(--serif); font-size: 17px; letter-spacing: -2px; padding-right: 2px; }
+.brand-name { font-family: var(--serif); font-size: 23px; font-weight: 600; letter-spacing: -.6px; }
+.main-nav { display: flex; align-items: center; gap: 34px; }
+.main-nav a { font-size: 13px; color: #5d5a57; transition: color .2s; }
+.main-nav a:hover, .main-nav a.active { color: var(--ink); }
+.main-nav a.active { font-weight: 700; }
+.menu-toggle { display: none; border: 0; background: transparent; font-size: 24px; cursor: pointer; }
+.section-shell { width: min(1120px, 90%); margin-inline: auto; }
+.hero { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(36px, 7vw, 95px); align-items: center; padding-block: 72px 80px; }
+.eyebrow { margin: 0 0 16px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2 { font-family: var(--serif); font-weight: 500; letter-spacing: -1.5px; line-height: 1.12; }
+.hero h1 { margin-bottom: 24px; font-size: clamp(42px, 5.1vw, 68px); }
+h1 em, h2 em { font-weight: 500; }
+.hero-intro { max-width: 400px; margin-bottom: 30px; color: var(--muted); font-size: 14px; line-height: 1.9; }
+.button { display: inline-flex; justify-content: center; align-items: center; gap: 18px; min-height: 48px; padding: 0 22px; border: 1px solid var(--ink); font-size: 12px; font-weight: 600; transition: transform .2s, background .2s, color .2s; cursor: pointer; }
+.button:hover { transform: translateY(-2px); }
+.button-dark { background: var(--ink); color: white; }
+.button-dark:hover { background: #383532; }
+.button-outline { background: transparent; color: var(--ink); }
+.button-outline:hover { background: var(--ink); color: white; }
+.hero-art { position: relative; display: block; padding: 0 0 30px 28px; }
+.hero-art::before { position: absolute; top: 24px; left: 0; width: 70%; height: 80%; border: 1px solid #dedbd7; content: ""; }
+.hero-art img { position: relative; width: 100%; height: clamp(340px, 42vw, 500px); object-fit: cover; background: var(--soft); }
+.image-note { position: absolute; right: -10px; bottom: 0; padding: 11px 17px; background: white; box-shadow: var(--shadow); font-family: var(--serif); font-size: 15px; font-style: italic; }
+.intro-strip { display: flex; justify-content: center; align-items: center; gap: clamp(14px, 3vw, 42px); padding: 20px 4%; border-block: 1px solid var(--line); }
+.intro-strip p { margin: 0; font-size: 9px; font-weight: 700; letter-spacing: 1.8px; }
+.intro-strip span { color: #aaa39b; font-size: 13px; }
+.featured-section { padding-block: 95px 100px; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 42px; }
+.section-heading .eyebrow { margin-bottom: 10px; }
+.section-heading h2, .closing-cta h2 { margin-bottom: 0; font-size: clamp(32px, 4vw, 46px); }
+.text-link { display: inline-flex; align-items: center; gap: 10px; padding-bottom: 4px; border-bottom: 1px solid #aaa49d; font-size: 12px; font-weight: 600; }
+.text-link:hover { border-color: var(--ink); }
+.stagger-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 34px; align-items: start; }
+.stagger-grid .art-card:nth-child(2) { margin-top: 54px; }
+.stagger-grid .art-card:nth-child(3) { margin-top: 105px; }
+.art-card { min-width: 0; display: block; }
+.art-card-image { position: relative; overflow: hidden; background: var(--soft); }
+.art-card-image img { width: 100%; height: 340px; object-fit: cover; transition: transform .5s; }
+.art-card:hover .art-card-image img { transform: scale(1.035); }
+.view-label { position: absolute; right: 12px; bottom: 12px; padding: 8px 11px; background: white; font-size: 10px; opacity: 0; transform: translateY(5px); transition: .25s; }
+.art-card:hover .view-label, .art-card:focus-visible .view-label { opacity: 1; transform: translateY(0); }
+.art-card-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding-top: 14px; }
+.art-card-meta h3 { margin: 0; font-family: var(--serif); font-size: 18px; font-weight: 500; }
+.art-card-meta p { margin: 0; color: var(--muted); font-size: 10px; text-align: right; }
+.about-section { background: var(--soft); padding: 85px 5%; text-align: center; }
+.about-inner { max-width: 620px; margin: auto; }
+.about-inner h2 { margin-bottom: 24px; font-size: clamp(36px, 4vw, 52px); }
+.about-inner > p:not(.eyebrow) { margin: 0 auto 25px; color: var(--muted); font-size: 13px; line-height: 2; }
+.closing-cta { padding-block: 78px 90px; text-align: center; }
+.closing-cta .eyebrow { margin-bottom: 12px; }
+.closing-cta h2 { margin-bottom: 26px; }
+.site-footer { padding: 38px 5% 24px; border-top: 1px solid var(--line); text-align: center; }
+.footer-brand { font-family: var(--serif); font-size: 22px; font-weight: 600; }
+.footer-brand span { margin-left: 5px; }
+.site-footer > p { margin: 7px 0 18px; color: var(--muted); font-size: 11px; }
+.footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 22px; margin-bottom: 22px; }
+.footer-links a { font-size: 11px; }
+.site-footer small { color: #8c8883; font-size: 10px; }
+.page-intro { padding-block: 78px 36px; }
+.page-intro h1, .enquiry-copy h1, .not-found h1 { margin-bottom: 14px; font-size: clamp(42px, 5vw, 64px); }
+.period { color: #a69d94; }
+.page-intro > p:last-child { color: var(--muted); font-size: 13px; }
+.gallery-section { padding-bottom: 100px; }
+.result-count { margin-bottom: 24px; color: var(--muted); font-size: 11px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 42px 28px; }
+.gallery-grid .art-card-image img { height: 360px; }
+.detail-layout { display: grid; grid-template-columns: 1.1fr .8fr; gap: clamp(45px, 8vw, 110px); align-items: start; padding-block: 65px 100px; }
+.detail-image img { width: 100%; max-height: 700px; object-fit: contain; background: var(--soft); }
+.image-caption { margin-top: 12px; color: var(--muted); font-size: 10px; }
+.detail-copy { position: sticky; top: 115px; padding-top: 12px; }
+.back-link { display: inline-block; margin-bottom: 45px; color: var(--muted); font-size: 11px; }
+.detail-copy h1 { margin-bottom: 20px; font-size: clamp(38px, 4vw, 56px); }
+.detail-description { margin-bottom: 30px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+.detail-specs { margin-bottom: 25px; border-top: 1px solid var(--line); }
+.detail-specs div { display: flex; justify-content: space-between; gap: 15px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 11px; }
+.detail-specs span { color: var(--muted); }
+.detail-specs strong { font-weight: 600; text-align: right; }
+.detail-note { color: var(--muted); font-size: 11px; line-height: 1.8; }
+.full-button { width: 100%; margin-top: 10px; }
+.enquiry-layout { display: grid; grid-template-columns: .8fr 1fr; gap: clamp(50px, 9vw, 120px); padding-block: 75px 110px; }
+.enquiry-copy h1 { margin-bottom: 24px; }
+.enquiry-copy > p:not(.eyebrow) { max-width: 390px; margin-bottom: 28px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+.contact-note { display: flex; align-items: center; gap: 14px; margin: 35px 0 25px; }
+.note-symbol { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid var(--ink); border-radius: 50%; font-family: var(--serif); }
+.contact-note strong { font-family: var(--serif); font-size: 15px; font-weight: 500; }
+.contact-note p { margin: 2px 0 0; color: var(--muted); font-size: 11px; }
+.enquiry-form { padding: 32px; border: 1px solid var(--line); box-shadow: 0 10px 40px rgba(0,0,0,.035); }
+.enquiry-form label { display: block; margin: 18px 0 8px; font-size: 11px; font-weight: 600; }
+.enquiry-form label:first-child { margin-top: 0; }
+.enquiry-form label span { color: #a24e4e; }
+.enquiry-form input, .enquiry-form select, .enquiry-form textarea { display: block; width: 100%; padding: 13px 12px; border: 1px solid #dedbd7; border-radius: 0; outline: none; background: white; color: var(--ink); font-size: 12px; }
+.enquiry-form textarea { resize: vertical; }
+.enquiry-form input:focus, .enquiry-form select:focus, .enquiry-form textarea:focus { border-color: var(--ink); box-shadow: 0 0 0 2px rgba(0,0,0,.06); }
+.form-privacy { margin: 12px 0; color: var(--muted); font-size: 10px; }
+.flash-wrap { width: min(1120px, 90%); margin: 18px auto 0; }
+.flash { padding: 13px 16px; border: 1px solid var(--line); font-size: 12px; }
+.flash.success { border-color: #b6d7be; background: #f3faf4; }
+.flash.error { border-color: #e2baba; background: #fff6f6; }
+.not-found { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-block: 80px; }
+.not-found p:not(.eyebrow) { color: var(--muted); }
+
+@media (max-width: 760px) {
+  .site-header { padding: 12px 5%; }
+  .brand-mark { width: 37px; height: 37px; }
+  .brand-name { font-size: 20px; }
+  .menu-toggle { display: block; }
+  .main-nav { position: absolute; top: 100%; left: 0; right: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 5% 15px; background: white; box-shadow: var(--shadow); }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .hero { grid-template-columns: 1fr; gap: 38px; padding-block: 52px 60px; }
+  .hero h1 { font-size: clamp(42px, 12vw, 58px); }
+  .hero-art { padding-left: 16px; }
+  .hero-art img { height: 370px; }
+  .intro-strip { gap: 10px; flex-wrap: wrap; padding-block: 16px; }
+  .intro-strip p { font-size: 8px; letter-spacing: 1px; }
+  .featured-section { padding-block: 65px; }
+  .section-heading { align-items: flex-start; flex-direction: column; margin-bottom: 30px; }
+  .stagger-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 15px; }
+  .stagger-grid .art-card:nth-child(2), .stagger-grid .art-card:nth-child(3) { margin-top: 0; }
+  .stagger-grid .art-card:nth-child(even) { margin-top: 35px; }
+  .art-card-image img, .gallery-grid .art-card-image img { height: 245px; }
+  .art-card-meta { display: block; }
+  .art-card-meta h3 { font-size: 16px; }
+  .art-card-meta p { margin-top: 3px; text-align: left; }
+  .about-section { padding-block: 65px; }
+  .page-intro { padding-block: 55px 25px; }
+  .gallery-section { padding-bottom: 70px; }
+  .detail-layout, .enquiry-layout { grid-template-columns: 1fr; gap: 35px; padding-block: 45px 70px; }
+  .detail-copy { position: static; }
+  .back-link { margin-bottom: 28px; }
+  .enquiry-form { padding: 22px; }
+}
+@media (max-width: 420px) {
+  .stagger-grid, .gallery-grid { grid-template-columns: 1fr; }
+  .stagger-grid .art-card:nth-child(even) { margin-top: 0; }
+  .art-card-image img, .gallery-grid .art-card-image img { height: 340px; }
+  .hero-art img { height: 320px; }
+  .intro-strip span { display: none; }
+}
+
+
+/* ==========================================
+   ROSEARTS — MASONRY ARTWORK GALLERY
+   ========================================== */
+
+/* Masonry columns */
+.gallery-grid {
+    display: block;
+    columns: 3;
+    column-gap: 28px;
+}
+
+/* Individual artwork cards */
+.gallery-grid .art-card {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 32px;
+    break-inside: avoid;
+    vertical-align: top;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Image container */
+.gallery-grid .art-card-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: auto;
+    overflow: hidden;
+    background: #f8f7f4;
+    border: 1px solid #e9e5df;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.035);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Preserve each painting's original proportions */
+.gallery-grid .art-card-image img {
+    display: block;
+    position: static;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+    object-fit: contain;
+    object-position: center;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+/* Gentle hover effect */
+.gallery-grid .art-card:hover .art-card-image {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+}
+
+.gallery-grid .art-card:hover .art-card-image img {
+    transform: scale(1.015);
+}
+
+/* View artwork label */
+.gallery-grid .art-card-image .view-label {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 1;
+}
+
+/* Title, medium and size */
+.gallery-grid .art-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    padding-top: 12px;
+}
+
+.gallery-grid .art-card-meta h3 {
+    margin: 0;
+    font-weight: 400;
+}
+
+.gallery-grid .art-card-meta p {
+    margin: 0;
+    color: #77716b;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .gallery-grid {
+        columns: 2;
+        column-gap: 22px;
+    }
+
+    .gallery-grid .art-card {
+        margin-bottom: 26px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+    .gallery-grid {
+        columns: 2;
+        column-gap: 12px;
+    }
+
+    .gallery-grid .art-card {
+        margin-bottom: 22px;
+    }
+
+    .gallery-grid .art-card-meta {
+        display: block;
+    }
+
+    .gallery-grid .art-card-meta h3 {
+        font-size: 1rem;
+    }
+
+    .gallery-grid .art-card-meta p {
+        margin-top: 5px;
+        font-size: 0.72rem;
+    }
+
+    .gallery-grid .art-card-image .view-label {
+        right: 5px;
+        bottom: 5px;
+        font-size: 0.7rem;
+    }
+}
+
+/* FIX: All Paintings — remove square image containers */
+
+.gallery-grid .art-card {
+    display: block;
+    min-width: 0;
+    height: auto;
+    align-self: start;
+}
+
+.gallery-grid .art-card-image {
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Let every painting determine its own height */
+.gallery-grid .art-card-image img {
+    display: block;
+    position: static;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none;
+    aspect-ratio: auto !important;
+    object-fit: contain;
+    object-position: center;
+    border: 1px solid #eeeae4;
+    box-sizing: border-box;
+}
+
+/* Keep the View artwork label on the image */
+.gallery-grid .art-card-image .view-label {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+}
+
+/* Keep the artwork title and details below the image */
+.gallery-grid .art-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    padding-top: 12px;
+}
+
+/* Responsive gallery */
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 12px;
+    }
+}
